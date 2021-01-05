@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+    Input and Stuff
+    </title>
+    <script defer type="text/javascript" src="./myScript.js"></script>
+
+  </head>
+  <body>
+    <h1> Your Login Page! </h1>
+
+    <div id="ChangeCred">
+      <label for="email">Email:</label><br>
+      <input type="text" id="newEmail" name="fname"><br>
+      <label for="password">Password:</label><br>
+      <input type="text" id="newPassword" name="lname">
+    </div>
+    <button onClick = "changeCred();" style="margin-bottom:30px"> Save </button>
+
+    <div id="EnterCred">
+      <label for="email">Email:</label><br>
+      <input type="text" id="changedEmail" name="fname"><br>
+      <label for="password">Password:</label><br>
+      <input type="text" id="changedPassword" name="lname">
+    </div>
+    <button onClick = "tryCred();"> Log In </button>
+
+    <p id="wrong" style="display:none"> Wrong! Try again. </p>
+    <p id="correct" style="display:none">  You are in!</p>
+  </body>
+</html>
