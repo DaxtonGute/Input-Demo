@@ -28,3 +28,18 @@ function changeCred () {
   document.getElementById('newEmail').value = "";
   document.getElementById('newPassword').value = "";
 }
+
+function happy () {
+  document.getElementById('myResponse').style.display = "block";
+  document.getElementById('myResponse').innerHTML = "YAY. AWESOME. ME TOO!"
+}
+
+function meh () {
+  document.getElementById('myResponse').style.display = "block";
+  document.getElementById('myResponse').innerHTML = "I am sorry to hear that. If you are meh, I am too."
+}
+
+function unhappy () {
+  document.getElementById('myResponse').style.display = "block";
+  document.getElementById('myResponse').innerHTML = "Then leave...I never liked you anyways"
+}

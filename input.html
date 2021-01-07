@@ -29,6 +29,17 @@
     <button onClick = "tryCred();"> Log In </button>
 
     <p id="wrong" style="display:none"> Wrong! Try again. </p>
-    <p id="correct" style="display:none">  You are in!</p>
+    <p id="correct" style="display:none">  You are in! </p>
+
+    <h4>  How pleased are you with this AMAZING program? </h4>
+    <input type="radio" id="happy" name="response" value="happy" onclick="happy();">
+    <label for="happy"> :) </label><br>
+    <input type="radio" id="meh" name="response" value="meh" onclick="meh();">
+    <label for="meh"> :| </label><br>
+    <input type="radio" id="unhappy" name="response" value="unhappy" onclick="unhappy();">
+    <label for="unhappy"> :( </label>
+    <p id="myResponse" style="display:none"> Ok </p>
+
+    <h4>  Sign-up for our newsletter? </h4>
   </body>
 </html>
