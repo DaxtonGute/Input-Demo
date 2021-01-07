@@ -1,8 +1,8 @@
 changedCred = document.getElementById("ChangeCred");
 enteredCred = document.getElementById("EnterCred");
 
-globalEmail = "";
-globalPassword = "";
+globalEmail = "email";
+globalPassword = "password";
 
 
 // Click event to attach to button
