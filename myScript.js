@@ -43,3 +43,16 @@ function unhappy () {
   document.getElementById('myResponse').style.display = "block";
   document.getElementById('myResponse').innerHTML = "Then leave...I never liked you anyways"
 }
+
+function checkEmail () {
+  document.getElementById('confirmMessage').style.display = "block";
+  window.setTimeout(checkEmailPtTwo, 8000);
+}
+
+function checkEmailPtTwo (){
+  document.getElementById('confirmMessage').innerHTML = "Please check your inbox for a confirmation email...IMMA OFC JK: IDK HOW TO DO THAT YET";
+  window.setTimeout(checkEmailPtThree, 1000);
+}
+function checkEmailPtThree (){
+  document.getElementById('confirmMessage').innerHTML = "Please check your inbox for a confirmation email...IMMA OFC JK: IDK HOW TO DO THAT YET...yet";
+}
