@@ -35,19 +35,17 @@ function changeCred () {
   document.getElementById('newPassword').value = "";
 }
 
-function happy () { //how to do radio buttons
+function reactions () { //how to do radio buttons
   document.getElementById('myResponse').style.display = "block";
-  document.getElementById('myResponse').innerHTML = "YAY. AWESOME. ME TOO!"
-}
-
-function meh () {
-  document.getElementById('myResponse').style.display = "block";
-  document.getElementById('myResponse').innerHTML = "I am sorry to hear that. If you are meh, I am too."
-}
-
-function unhappy () {
-  document.getElementById('myResponse').style.display = "block";
-  document.getElementById('myResponse').innerHTML = "Then leave...I never liked you anyways"
+  if (document.getElementById('happy').checked){
+    document.getElementById('myResponse').innerHTML = "YAY. AWESOME. ME TOO!";
+  }
+  else if (document.getElementById('meh').checked) {
+    document.getElementById('myResponse').innerHTML = "I am sorry to hear that. If you are meh, I am too.";
+  }
+  else if (document.getElementById('unhappy').checked) {
+    document.getElementById('myResponse').innerHTML = "Then leave...I never liked you anyways";
+  }
 }
 
 function checkEmail () {

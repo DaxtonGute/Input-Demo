@@ -35,12 +35,14 @@
     <p id="correct" style="display:none">  You are in! </p>
 
     <h4>  How pleased are you with this AMAZING program? </h4>
-    <input type="radio" id="happy" name="response" value="happy" onclick="happy();">
+    <input type="radio" id="happy" name="response" value="happy">
     <label for="happy"> :) </label><br>
-    <input type="radio" id="meh" name="response" value="meh" onclick="meh();">
+    <input type="radio" id="meh" name="response" value="meh">
     <label for="meh"> :| </label><br>
-    <input type="radio" id="unhappy" name="response" value="unhappy" onclick="unhappy();">
+    <input type="radio" id="unhappy" name="response" value="unhappy">
     <label for="unhappy"> :( </label>
+    <p><br></p>
+    <button onClick = "reactions();" style="margin-bottom:30px"> Submit </button>
     <p id="myResponse" style="display:none"> Ok </p>
 
     <h4>  Sign-up for our newsletter? </h4>
