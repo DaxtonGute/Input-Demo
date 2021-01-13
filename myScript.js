@@ -1,8 +1,9 @@
 changedCred = document.getElementById("ChangeCred");
 enteredCred = document.getElementById("EnterCred");
 
-globalEmail = "email";
-globalPassword = "password";
+localStorage.setItem("email", "email");
+localStorage.setItem("password", "password");
+
 
 
 // Click event to attach to button
@@ -13,7 +14,7 @@ function tryCred () {
   document.getElementById('changedEmail').value = "";
   document.getElementById('changedPassword').value = "";
 
-  if (inputEmail == globalEmail && inputPassword == globalPassword){
+  if (inputEmail == localStorage.getItem("email") && inputPassword == localStorage.getItem("password")){
     document.getElementById('wrong').style.display = "none";
     document.getElementById('correct').style.display = "block";
   }else{
@@ -22,14 +23,19 @@ function tryCred () {
   }
 }
 
+function autofill(){
+  document.getElementById('changedEmail').value = localStorage.getItem("email");
+  document.getElementById('changedPassword').value = localStorage.getItem("password");
+}
+
 function changeCred () {
-  globalEmail = document.getElementById('newEmail').value;
-  globalPassword = document.getElementById('newPassword').value;
+  localStorage.setItem("email", document.getElementById('newEmail').value);
+  localStorage.setItem("password", document.getElementById('newPassword').value);
   document.getElementById('newEmail').value = "";
   document.getElementById('newPassword').value = "";
 }
 
-function happy () {
+function happy () { //how to do radio buttons
   document.getElementById('myResponse').style.display = "block";
   document.getElementById('myResponse').innerHTML = "YAY. AWESOME. ME TOO!"
 }
