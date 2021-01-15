@@ -1,12 +1,26 @@
 changedCred = document.getElementById("ChangeCred");
 enteredCred = document.getElementById("EnterCred");
 
-var pref = {
-  email: "none",
-  password: "none",
-  reaction: "none",
-  signUp: "no",
+if (typeof JSON.parse(localStorage.getItem("preferences")).email == 'undefined') {
+  var pref = {
+    email: "none",
+    password: "none",
+    reaction: "none",
+    signUp: "no",
+  }
+}else{
+  var pref = {
+    email: JSON.parse(localStorage.getItem("preferences")).email,
+    password: JSON.parse(localStorage.getItem("preferences")).password,
+    reaction: JSON.parse(localStorage.getItem("preferences")).reaction,
+    signUp: JSON.parse(localStorage.getItem("preferences")).signUp,
+  }
 }
+
+document.getElementById('happy').checked = false;
+document.getElementById('meh').checked = false;
+document.getElementById('unhappy').checked = false;
+document.getElementById('emailSignup').checked = false;
 
 localStorage.setItem("preferences", JSON.stringify(pref));
 
