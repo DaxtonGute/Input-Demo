@@ -1,21 +1,23 @@
 changedCred = document.getElementById("ChangeCred");
 enteredCred = document.getElementById("EnterCred");
 
-if (typeof JSON.parse(localStorage.getItem("preferences")).email == 'undefined') {
-  var pref = {
-    email: "none",
-    password: "none",
-    reaction: "none",
-    signUp: "no",
-  }
-}else{
+
+try{
   var pref = {
     email: JSON.parse(localStorage.getItem("preferences")).email,
     password: JSON.parse(localStorage.getItem("preferences")).password,
     reaction: JSON.parse(localStorage.getItem("preferences")).reaction,
     signUp: JSON.parse(localStorage.getItem("preferences")).signUp,
   }
+}catch{
+  var pref = {
+    email: "none",
+    password: "none",
+    reaction: "none",
+    signUp: "no",
+  }
 }
+
 
 document.getElementById('happy').checked = false;
 document.getElementById('meh').checked = false;
@@ -56,6 +58,7 @@ function autofill(){
   }else if(JSON.parse(localStorage.getItem("preferences")).reaction == "unhappy"){
     document.getElementById('unhappy').checked = true;
   }
+  reactions();
 }
 
 function changeCred () {
