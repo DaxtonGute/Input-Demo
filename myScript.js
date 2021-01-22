@@ -1,6 +1,11 @@
 changedCred = document.getElementById("ChangeCred");
 enteredCred = document.getElementById("EnterCred");
 
+inputsList = document.getElementsByTagName("input");
+for(input in inputsList){
+  input.onmouseout = offHover(id){id.style.backgroundColor = "lightgrey";};
+  input.onmouseover = onHover(id){id.style.backgroundColor = "white";};
+}
 
 try{
   var pref = {
@@ -97,11 +102,17 @@ function checkEmail () {
 
   localStorage.setItem("preferences", JSON.stringify(pref));
 }
-
 function checkEmailPtTwo (){
   document.getElementById('confirmMessage').innerHTML = "Please check your inbox for a confirmation email...IMMA OFC JK: IDK HOW TO DO THAT YET";
   window.setTimeout(checkEmailPtThree, 1000);
 }
 function checkEmailPtThree (){
   document.getElementById('confirmMessage').innerHTML = "Please check your inbox for a confirmation email...IMMA OFC JK: IDK HOW TO DO THAT YET...yet";
+}
+
+function onHover(id){
+  id.style.backgroundColor = "lightgrey";
+}
+function offHover(id){
+  id.style.backgroundColor = "white";
 }
