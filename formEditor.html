@@ -6,7 +6,7 @@
     Form Editor
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script defer type="text/javascript" src="./myScript.js"></script>
+    <script defer type="text/javascript" src="./formEditorScript.js"></script>
   </head>
   <body style="background-color: rgb(255,143,94);">
 
@@ -22,9 +22,12 @@
           </div>
 
           <!-- new elements go here -->
+          <div id="inside">
+          </div>
+
 
           <div class="btn-group">
-            <button type="button" class="btn btn-danger"> New Text Field </button>
+            <button type="button" class="btn btn-danger" onClick = "newTextField();"> New Text Field </button>
             <button type="button" class="btn btn-danger"> New Username Field </button>
             <button type="button" class="btn btn-danger"> New Password Field </button>
           </div>
