@@ -1,15 +1,17 @@
 var insideThis = document.getElementById("inside");
+var radioGroups = [];
+var currentRadioGroup = null;
 
 function newTextField() {                    //TEXT
   var label = document.createElement("input");
   label.type = "text";
-  label.placeholder = "Put the label's text here"
+  label.placeholder = "Put the label's text here";
   var newLineOne = document.createElement("br");
   var input = document.createElement("input");
   input.type = "text";
   input.placeholder = "This is a Text Field";
   input.style.width = "100%";
-  input.readOnly = true;
+
   input.style.backgroundColor = "grey";
   var newLineTwo = document.createElement("p");
 
@@ -24,7 +26,7 @@ function newTextField() {                    //TEXT
 function newNumberField() {                   //NUMBERS
   var label = document.createElement("input");
   label.type = "text";
-  label.placeholder = "Put the label's text here"
+  label.placeholder = "Put the label's text here";
   var min = document.createElement("input");
   min.type = "number";
   min.placeholder = "min"
@@ -38,7 +40,7 @@ function newNumberField() {                   //NUMBERS
   var input = document.createElement("input");
   input.type = "number";
   input.placeholder = "This is a Number Field";
-  input.readOnly = true;
+
   input.style.backgroundColor = "grey";
   var newLineTwo = document.createElement("p");
 
@@ -52,14 +54,45 @@ function newNumberField() {                   //NUMBERS
 
 
 
-function newEmailField() {                  //PASSWORD
+function newRadioGroup() {                  //RADIOGROUP
+  var label = document.createElement("input");
+  label.type = "text";
+  label.placeholder = "Put the radio group's text here";
+  radioGroups.push(label);
+  var newLine = document.createElement("p");
+
+  insideThis.appendChild(label);
+  insideThis.appendChild(newLine);
+}
+
+
+
+function newRadioButton(){                  //RADIOBUTTON
+  var button = document.createElement("input");
+  button.type = "radio";
+  button.placeholder = "Put the radio button's text here";
+  button.style.padding = "0px 0px 0px 30px";
+  button.name = radioGroups[radioGroups.length - 1].value;
+  var label = document.createElement("input");
+  label.type = "text";
+  label.placeholder = "Put the radio button's text here";
+  var newLine = document.createElement("p");
+
+  insideThis.appendChild(button);
+  insideThis.appendChild(label);
+  insideThis.appendChild(newLine);
+}
+
+
+
+function newEmailField() {                  //EMAIL
   var label = document.createElement("p");
   label.innerHTML = "Email:";
   var input = document.createElement("input");
   input.type = "email";
   input.placeholder = "This is a Email Field";
   input.style.width = "100%";
-  input.readOnly = true;
+
   input.style.backgroundColor = "grey";
   var newLine = document.createElement("p");
 
@@ -71,14 +104,14 @@ function newEmailField() {                  //PASSWORD
 
 
 
-function newPhoneField() {                  //PASSWORD
+function newPhoneField() {                  //PHONE
   var label = document.createElement("p");
   label.innerHTML = "Phone:";
   var input = document.createElement("input");
   input.type = "phone";
   input.placeholder = "This is a Phone Field";
   input.style.width = "100%";
-  input.readOnly = true;
+
   input.style.backgroundColor = "grey";
   var newLine = document.createElement("p");
 
@@ -96,7 +129,7 @@ function newUsernameField() {                 //USERNAME
   input.type = "username";
   input.placeholder = "This is a Username Field";
   input.style.width = "100%";
-  input.readOnly = true;
+
   input.style.backgroundColor = "grey";
   var newLine = document.createElement("p");
 
@@ -114,7 +147,7 @@ function newPasswordField() {                  //PASSWORD
   input.type = "password";
   input.placeholder = "This is a Password Field";
   input.style.width = "100%";
-  input.readOnly = true;
+
   input.style.backgroundColor = "grey";
   var newLine = document.createElement("p");
 
