@@ -1,6 +1,5 @@
 var insideThis = document.getElementById("inside");
 var radioGroups = [];
-var currentRadioGroup = null;
 
 function newTextField() {                    //TEXT
   var label = document.createElement("input");
@@ -11,6 +10,7 @@ function newTextField() {                    //TEXT
   input.type = "text";
   input.placeholder = "This is a Text Field";
   input.style.width = "100%";
+  input.readOnly = true;
 
   input.style.backgroundColor = "grey";
   var newLineTwo = document.createElement("p");
@@ -40,6 +40,7 @@ function newNumberField() {                   //NUMBERS
   var input = document.createElement("input");
   input.type = "number";
   input.placeholder = "This is a Number Field";
+  input.readOnly = true;
 
   input.style.backgroundColor = "grey";
   var newLineTwo = document.createElement("p");
@@ -70,9 +71,9 @@ function newRadioGroup() {                  //RADIOGROUP
 function newRadioButton(){                  //RADIOBUTTON
   var button = document.createElement("input");
   button.type = "radio";
-  button.placeholder = "Put the radio button's text here";
   button.style.padding = "0px 0px 0px 30px";
-  button.name = radioGroups[radioGroups.length - 1].value;
+  button.name = "" + (radioGroups.length - 1);
+  button.disabled = "yes";
   var label = document.createElement("input");
   label.type = "text";
   label.placeholder = "Put the radio button's text here";
@@ -83,7 +84,20 @@ function newRadioButton(){                  //RADIOBUTTON
   insideThis.appendChild(newLine);
 }
 
+function newCheckbox(){                  //RADIOBUTTON
+  var button = document.createElement("input");
+  button.type = "checkbox";
+  button.name = "" + (radioGroups.length - 1);
+  button.disabled = "yes";
+  var label = document.createElement("input");
+  label.type = "text";
+  label.placeholder = "Put the checkbox's text here";
+  var newLine = document.createElement("p");
 
+  insideThis.appendChild(button);
+  insideThis.appendChild(label);
+  insideThis.appendChild(newLine);
+}
 
 function newEmailField() {                  //EMAIL
   var label = document.createElement("p");
