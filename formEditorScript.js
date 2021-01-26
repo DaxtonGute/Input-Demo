@@ -1,6 +1,6 @@
 var insideThis = document.getElementById("inside");
 
-function newTextField() {
+function newTextField() {                    //TEXT
   var label = document.createElement("input");
   label.type = "text";
   label.placeholder = "Put the label's text here"
@@ -19,7 +19,40 @@ function newTextField() {
   insideThis.appendChild(newLineTwo);
 }
 
-function newUsernameField() { // lots of duplicate code
+
+
+function newNumberField() {                   //NUMBERS
+  var label = document.createElement("input");
+  label.type = "text";
+  label.placeholder = "Put the label's text here"
+  var min = document.createElement("input");
+  min.type = "number";
+  min.placeholder = "min"
+  min.style.width = "100px";
+  var max = document.createElement("input");
+  max.type = "number";
+  max.placeholder = "max";
+  max.style.width = "100px";
+
+  var newLineOne = document.createElement("br");
+  var input = document.createElement("input");
+  input.type = "number";
+  input.placeholder = "This is a Number Field";
+  input.readOnly = true;
+  input.style.backgroundColor = "grey";
+  var newLineTwo = document.createElement("p");
+
+  insideThis.appendChild(label);
+  insideThis.appendChild(min);
+  insideThis.appendChild(max);
+  insideThis.appendChild(newLineOne);
+  insideThis.appendChild(input);
+  insideThis.appendChild(newLineTwo);
+}
+
+
+
+function newUsernameField() {                 //USERNAME
   var label = document.createElement("p");
   label.innerHTML = "Username:";
   var input = document.createElement("input");
@@ -35,7 +68,9 @@ function newUsernameField() { // lots of duplicate code
   insideThis.appendChild(newLine);
 }
 
-function newPasswordField() { // lots of duplicate code
+
+
+function newPasswordField() {                  //PASSWORD
   var label = document.createElement("p");
   label.innerHTML = "Password:";
   var input = document.createElement("input");
