@@ -84,10 +84,11 @@ function newRadioButton(){                  //RADIOBUTTON
   insideThis.appendChild(newLine);
 }
 
-function newCheckbox(){                  //RADIOBUTTON
+
+
+function newCheckbox(){                  //CHECKBOX
   var button = document.createElement("input");
   button.type = "checkbox";
-  button.name = "" + (radioGroups.length - 1);
   button.disabled = "yes";
   var label = document.createElement("input");
   label.type = "text";
@@ -99,6 +100,50 @@ function newCheckbox(){                  //RADIOBUTTON
   insideThis.appendChild(newLine);
 }
 
+
+
+
+
+function newDateField() {                  //DATE
+  var label = document.createElement("input");
+  label.type = "text";
+  label.placeholder = "Put the label's text here";
+  var input = document.createElement("input");
+  input.type = "date";
+  input.style.width = "100%";
+  input.readOnly = true;
+
+  input.style.backgroundColor = "grey";
+  var newLine = document.createElement("p");
+
+  insideThis.appendChild(label);
+  insideThis.appendChild(input);
+  insideThis.appendChild(newLine);
+}
+
+
+
+
+function newTimeField() {                  //DATE
+  var label = document.createElement("input");
+  label.type = "text";
+  label.placeholder = "Put the label's text here";
+  var input = document.createElement("input");
+  input.type = "time";
+  input.style.width = "100%";
+  input.readOnly = true;
+
+  input.style.backgroundColor = "grey";
+  var newLine = document.createElement("p");
+
+  insideThis.appendChild(label);
+  insideThis.appendChild(input);
+  insideThis.appendChild(newLine);
+}
+
+
+
+
 function newEmailField() {                  //EMAIL
   var label = document.createElement("p");
   label.innerHTML = "Email:";
@@ -106,6 +151,7 @@ function newEmailField() {                  //EMAIL
   input.type = "email";
   input.placeholder = "This is a Email Field";
   input.style.width = "100%";
+  input.readOnly = true;
 
   input.style.backgroundColor = "grey";
   var newLine = document.createElement("p");
