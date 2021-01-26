@@ -52,11 +52,48 @@ function newNumberField() {                   //NUMBERS
 
 
 
+function newEmailField() {                  //PASSWORD
+  var label = document.createElement("p");
+  label.innerHTML = "Email:";
+  var input = document.createElement("input");
+  input.type = "email";
+  input.placeholder = "This is a Email Field";
+  input.style.width = "100%";
+  input.readOnly = true;
+  input.style.backgroundColor = "grey";
+  var newLine = document.createElement("p");
+
+  insideThis.appendChild(label);
+  insideThis.appendChild(input);
+  insideThis.appendChild(newLine);
+}
+
+
+
+
+function newPhoneField() {                  //PASSWORD
+  var label = document.createElement("p");
+  label.innerHTML = "Phone:";
+  var input = document.createElement("input");
+  input.type = "phone";
+  input.placeholder = "This is a Phone Field";
+  input.style.width = "100%";
+  input.readOnly = true;
+  input.style.backgroundColor = "grey";
+  var newLine = document.createElement("p");
+
+  insideThis.appendChild(label);
+  insideThis.appendChild(input);
+  insideThis.appendChild(newLine);
+}
+
+
+
 function newUsernameField() {                 //USERNAME
   var label = document.createElement("p");
   label.innerHTML = "Username:";
   var input = document.createElement("input");
-  input.type = "text";
+  input.type = "username";
   input.placeholder = "This is a Username Field";
   input.style.width = "100%";
   input.readOnly = true;
@@ -74,7 +111,7 @@ function newPasswordField() {                  //PASSWORD
   var label = document.createElement("p");
   label.innerHTML = "Password:";
   var input = document.createElement("input");
-  input.type = "text";
+  input.type = "password";
   input.placeholder = "This is a Password Field";
   input.style.width = "100%";
   input.readOnly = true;
