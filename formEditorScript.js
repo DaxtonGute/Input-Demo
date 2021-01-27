@@ -1,5 +1,23 @@
 var insideThis = document.getElementById("inside");
 var radioGroups = [];
+var allElements = []; // [Element, label, response]
+
+
+try{
+  var pref = {
+    email: JSON.parse(localStorage.getItem("preferences")).email,
+    password: JSON.parse(localStorage.getItem("preferences")).password,
+    reaction: JSON.parse(localStorage.getItem("preferences")).reaction,
+    signUp: JSON.parse(localStorage.getItem("preferences")).signUp,
+  }
+}catch{
+  var pref = {
+    email: "none",
+    password: "none",
+    reaction: "none",
+    signUp: "no",
+  }
+}
 
 function newTextField() {                    //TEXT
   var label = document.createElement("input");
@@ -15,6 +33,7 @@ function newTextField() {                    //TEXT
   input.style.backgroundColor = "grey";
   var newLineTwo = document.createElement("p");
 
+  allElements.push(["textField", label, ""]);
   insideThis.appendChild(label);
   insideThis.appendChild(newLineOne);
   insideThis.appendChild(input);
@@ -23,18 +42,19 @@ function newTextField() {                    //TEXT
 
 
 
-function newNumberField() {                   //NUMBERS
+function newNumberField() {                   //NUMBERS //add the max and min
   var label = document.createElement("input");
   label.type = "text";
   label.placeholder = "Put the label's text here";
-  var min = document.createElement("input");
-  min.type = "number";
-  min.placeholder = "min"
-  min.style.width = "100px";
-  var max = document.createElement("input");
-  max.type = "number";
-  max.placeholder = "max";
-  max.style.width = "100px";
+
+  // var min = document.createElement("input");
+  // min.type = "number";
+  // min.placeholder = "min"
+  // min.style.width = "100px";
+  // var max = document.createElement("input");
+  // max.type = "number";
+  // max.placeholder = "max";
+  // max.style.width = "100px";
 
   var newLineOne = document.createElement("br");
   var input = document.createElement("input");
@@ -45,9 +65,10 @@ function newNumberField() {                   //NUMBERS
   input.style.backgroundColor = "grey";
   var newLineTwo = document.createElement("p");
 
+  allElements.push(["numberField", label, ""]);
   insideThis.appendChild(label);
-  insideThis.appendChild(min);
-  insideThis.appendChild(max);
+  //insideThis.appendChild(min);
+  //insideThis.appendChild(max);
   insideThis.appendChild(newLineOne);
   insideThis.appendChild(input);
   insideThis.appendChild(newLineTwo);
@@ -62,6 +83,7 @@ function newRadioGroup() {                  //RADIOGROUP
   radioGroups.push(label);
   var newLine = document.createElement("p");
 
+  allElements.push(["radioGroup", label, ""]);
   insideThis.appendChild(label);
   insideThis.appendChild(newLine);
 }
@@ -79,6 +101,7 @@ function newRadioButton(){                  //RADIOBUTTON
   label.placeholder = "Put the radio button's text here";
   var newLine = document.createElement("p");
 
+  allElements.push(["radioButton", label, ""]);
   insideThis.appendChild(button);
   insideThis.appendChild(label);
   insideThis.appendChild(newLine);
@@ -95,6 +118,7 @@ function newCheckbox(){                  //CHECKBOX
   label.placeholder = "Put the checkbox's text here";
   var newLine = document.createElement("p");
 
+  allElements.push(["checkbox", label, ""]);
   insideThis.appendChild(button);
   insideThis.appendChild(label);
   insideThis.appendChild(newLine);
@@ -116,6 +140,7 @@ function newDateField() {                  //DATE
   input.style.backgroundColor = "grey";
   var newLine = document.createElement("p");
 
+  allElements.push(["dateField", label, ""]);
   insideThis.appendChild(label);
   insideThis.appendChild(input);
   insideThis.appendChild(newLine);
@@ -136,6 +161,7 @@ function newTimeField() {                  //DATE
   input.style.backgroundColor = "grey";
   var newLine = document.createElement("p");
 
+  allElements.push(["timeField", label, ""]);
   insideThis.appendChild(label);
   insideThis.appendChild(input);
   insideThis.appendChild(newLine);
@@ -215,3 +241,11 @@ function newPasswordField() {                  //PASSWORD
   insideThis.appendChild(input);
   insideThis.appendChild(newLine);
 }
+
+
+
+function saveFormEditor(){
+
+}
+
+//add method that is just interpreting the JSON to the form (not editor)
