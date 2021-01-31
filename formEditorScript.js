@@ -165,13 +165,13 @@ function deleteElement(index){
     console.log(classElement[i]);
     classElement[i].remove();
   }
-  for (var i = 0; i < questions.length; i++) {
+  questions.splice(Number(index), 1);
+  for (var i = Number(index); i < questions.length; i++) {
     var classElement = document.querySelectorAll("._" + (i+1));
     for (var j = 0; j < classElement.length; j++) {
       classElement[i].className = i.toString();
     }
   }
-  questions.splice(Number(index), 1);
 
 }
 
