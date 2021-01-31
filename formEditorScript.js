@@ -1,43 +1,40 @@
 var insideThis = document.getElementById("inside");
-var radioGroups = [];
-var allElements = []; // [Element, label, response]
+var questions = []; // [Element, label, response]
+var answers = [];
 
+// add a post to automatically ship data into a field <form action=“formEditor.html” method=“post”>
 
-try{
-  var pref = {
-    email: JSON.parse(localStorage.getItem("preferences")).email,
-    password: JSON.parse(localStorage.getItem("preferences")).password,
-    reaction: JSON.parse(localStorage.getItem("preferences")).reaction,
-    signUp: JSON.parse(localStorage.getItem("preferences")).signUp,
-  }
-}catch{
-  var pref = {
-    email: "none",
-    password: "none",
-    reaction: "none",
-    signUp: "no",
-  }
-}
 
 function newTextField() {                    //TEXT
   var label = document.createElement("input");
   label.type = "text";
   label.placeholder = "Put the label's text here";
-  var newLineOne = document.createElement("br");
+  label.style.margin = "10px 0px";
   var input = document.createElement("input");
   input.type = "text";
   input.placeholder = "This is a Text Field";
   input.style.width = "100%";
   input.readOnly = true;
-
   input.style.backgroundColor = "grey";
-  var newLineTwo = document.createElement("p");
+  input.style.margin = "10px 0px";
+  var deleteButton = document.createElement("button");
+  deleteButton.style.backgroundColor = "red";
+  deleteButton.innerHTML = "X";
+  deleteButton.onclick = function() {this.remove();deleteElement(this.className);};
 
-  allElements.push(["textField", label, ""]);
+  questionsLength = questions.length;
+  label.className = "_" + questionsLength;
+  deleteButton.className = "_" + questionsLength;
+  input.className = "_" + questionsLength;
+
+  questions.push(["textField", label]);
   insideThis.appendChild(label);
-  insideThis.appendChild(newLineOne);
+  insideThis.appendChild(deleteButton);
   insideThis.appendChild(input);
-  insideThis.appendChild(newLineTwo);
+  console.log(label.className);
+  console.log(deleteButton.className);
+  console.log(input.className);
+
 }
 
 
@@ -46,32 +43,27 @@ function newNumberField() {                   //NUMBERS //add the max and min
   var label = document.createElement("input");
   label.type = "text";
   label.placeholder = "Put the label's text here";
-
-  // var min = document.createElement("input");
-  // min.type = "number";
-  // min.placeholder = "min"
-  // min.style.width = "100px";
-  // var max = document.createElement("input");
-  // max.type = "number";
-  // max.placeholder = "max";
-  // max.style.width = "100px";
-
-  var newLineOne = document.createElement("br");
+  label.style.margin = "10px 0px";
   var input = document.createElement("input");
   input.type = "number";
   input.placeholder = "This is a Number Field";
   input.readOnly = true;
-
   input.style.backgroundColor = "grey";
-  var newLineTwo = document.createElement("p");
+  input.style.margin = "10px 0px";
+  var deleteButton = document.createElement("button");
+  deleteButton.style.backgroundColor = "red";
+  deleteButton.innerHTML = "X";
+  deleteButton.onclick = function() {this.remove();deleteElement(this.className);};
 
-  allElements.push(["numberField", label, ""]);
+  questionsLength = questions.length;
+  label.className = "_" + questionsLength;
+  deleteButton.className = "_" + questionsLength;
+  input.className = "_" + questionsLength;
+
+  questions.push(["numberField", label]);
   insideThis.appendChild(label);
-  //insideThis.appendChild(min);
-  //insideThis.appendChild(max);
-  insideThis.appendChild(newLineOne);
+  insideThis.appendChild(deleteButton);
   insideThis.appendChild(input);
-  insideThis.appendChild(newLineTwo);
 }
 
 
@@ -80,168 +72,96 @@ function newRadioGroup() {                  //RADIOGROUP
   var label = document.createElement("input");
   label.type = "text";
   label.placeholder = "Put the radio group's text here";
-  radioGroups.push(label);
-  var newLine = document.createElement("p");
+  label.style.margin = "10px 0px";
+  var deleteButton = document.createElement("button");
+  deleteButton.style.backgroundColor = "red";
+  deleteButton.innerHTML = "X";
+  deleteButton.onclick = function() {this.remove();deleteElement(this.className);};
 
-  allElements.push(["radioGroup", label, ""]);
+  questionsLength = questions.length;
+  label.className = "_" + questionsLength;
+  deleteButton.className = "_" + questionsLength;
+
+  questions.push(["radioGroup", label]);
   insideThis.appendChild(label);
-  insideThis.appendChild(newLine);
+  insideThis.appendChild(deleteButton);
 }
 
 
 
 function newRadioButton(){                  //RADIOBUTTON
-  var button = document.createElement("input");
-  button.type = "radio";
-  button.style.padding = "0px 0px 0px 30px";
-  button.name = "" + (radioGroups.length - 1);
-  button.disabled = "yes";
+  var radioButton = document.createElement("input");
+  radioButton.type = "radio";
+  radioButton.style.margin = "0px 0px 0px 10px";
+  lastRadioGroup = 0;
+  for (var i = 0; i < questions.length; i++) {
+    if(questions[i][0] === "radioGroup"){
+      lastRadioGroup = i;
+    }
+  }
+  radioButton.name = "" + lastRadioGroup;
+  radioButton.disabled = "yes";
   var label = document.createElement("input");
   label.type = "text";
   label.placeholder = "Put the radio button's text here";
-  var newLine = document.createElement("p");
+  label.style.margin = "10px 0px";
+  var deleteButton = document.createElement("button");
+  deleteButton.style.backgroundColor = "red";
+  deleteButton.innerHTML = "X";
+  deleteButton.onclick = function() {this.remove();deleteElement(this.className);};
 
-  allElements.push(["radioButton", label, ""]);
-  insideThis.appendChild(button);
+  questionsLength = questions.length;
+  radioButton.className = "_" + questionsLength;
+  label.className = "_" + questionsLength;
+  deleteButton.className = "_" + questionsLength;
+
+  questions.push(["radioButton", label]);
+  insideThis.appendChild(radioButton);
   insideThis.appendChild(label);
-  insideThis.appendChild(newLine);
+  insideThis.appendChild(deleteButton);
 }
 
 
 
 function newCheckbox(){                  //CHECKBOX
-  var button = document.createElement("input");
-  button.type = "checkbox";
-  button.disabled = "yes";
+  var checkButton = document.createElement("input");
+  checkButton.type = "checkbox";
+  checkButton.disabled = "yes";
   var label = document.createElement("input");
   label.type = "text";
   label.placeholder = "Put the checkbox's text here";
-  var newLine = document.createElement("p");
+  label.style.margin = "10px 0px";
+  var deleteButton = document.createElement("button");
+  deleteButton.style.backgroundColor = "red";
+  deleteButton.innerHTML = "X";
+  deleteButton.onclick = function() {this.remove();deleteElement(this.className);};
 
-  allElements.push(["checkbox", label, ""]);
-  insideThis.appendChild(button);
+  questionsLength = questions.length;
+  checkButton.className = "_" + questionsLength;
+  deleteButton.className = "_" + questionsLength;
+  label.className = "_" + questionsLength;
+
+  questions.push(["checkbox", label]);
+  insideThis.appendChild(checkButton);
   insideThis.appendChild(label);
-  insideThis.appendChild(newLine);
+  insideThis.appendChild(deleteButton);
 }
 
+function deleteElement(index){
+  var classElement = document.querySelectorAll("."+index);
+  for (var i = 0; i < classElement.length; i++) {
+    console.log(classElement[i]);
+    classElement[i].remove();
+  }
+  for (var i = 0; i < questions.length; i++) {
+    var classElement = document.querySelectorAll("._" + (i+1));
+    for (var j = 0; j < classElement.length; j++) {
+      classElement[i].className = i.toString();
+    }
+  }
+  questions.splice(Number(index), 1);
 
-
-
-
-function newDateField() {                  //DATE
-  var label = document.createElement("input");
-  label.type = "text";
-  label.placeholder = "Put the label's text here";
-  var input = document.createElement("input");
-  input.type = "date";
-  input.style.width = "100%";
-  input.readOnly = true;
-
-  input.style.backgroundColor = "grey";
-  var newLine = document.createElement("p");
-
-  allElements.push(["dateField", label, ""]);
-  insideThis.appendChild(label);
-  insideThis.appendChild(input);
-  insideThis.appendChild(newLine);
 }
-
-
-
-
-function newTimeField() {                  //DATE
-  var label = document.createElement("input");
-  label.type = "text";
-  label.placeholder = "Put the label's text here";
-  var input = document.createElement("input");
-  input.type = "time";
-  input.style.width = "100%";
-  input.readOnly = true;
-
-  input.style.backgroundColor = "grey";
-  var newLine = document.createElement("p");
-
-  allElements.push(["timeField", label, ""]);
-  insideThis.appendChild(label);
-  insideThis.appendChild(input);
-  insideThis.appendChild(newLine);
-}
-
-
-
-
-function newEmailField() {                  //EMAIL
-  var label = document.createElement("p");
-  label.innerHTML = "Email:";
-  var input = document.createElement("input");
-  input.type = "email";
-  input.placeholder = "This is a Email Field";
-  input.style.width = "100%";
-  input.readOnly = true;
-
-  input.style.backgroundColor = "grey";
-  var newLine = document.createElement("p");
-
-  insideThis.appendChild(label);
-  insideThis.appendChild(input);
-  insideThis.appendChild(newLine);
-}
-
-
-
-
-function newPhoneField() {                  //PHONE
-  var label = document.createElement("p");
-  label.innerHTML = "Phone:";
-  var input = document.createElement("input");
-  input.type = "phone";
-  input.placeholder = "This is a Phone Field";
-  input.style.width = "100%";
-
-  input.style.backgroundColor = "grey";
-  var newLine = document.createElement("p");
-
-  insideThis.appendChild(label);
-  insideThis.appendChild(input);
-  insideThis.appendChild(newLine);
-}
-
-
-
-function newUsernameField() {                 //USERNAME
-  var label = document.createElement("p");
-  label.innerHTML = "Username:";
-  var input = document.createElement("input");
-  input.type = "username";
-  input.placeholder = "This is a Username Field";
-  input.style.width = "100%";
-
-  input.style.backgroundColor = "grey";
-  var newLine = document.createElement("p");
-
-  insideThis.appendChild(label);
-  insideThis.appendChild(input);
-  insideThis.appendChild(newLine);
-}
-
-
-
-function newPasswordField() {                  //PASSWORD
-  var label = document.createElement("p");
-  label.innerHTML = "Password:";
-  var input = document.createElement("input");
-  input.type = "password";
-  input.placeholder = "This is a Password Field";
-  input.style.width = "100%";
-
-  input.style.backgroundColor = "grey";
-  var newLine = document.createElement("p");
-
-  insideThis.appendChild(label);
-  insideThis.appendChild(input);
-  insideThis.appendChild(newLine);
-}
-
 
 
 function saveFormEditor(){
