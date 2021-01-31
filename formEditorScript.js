@@ -175,8 +175,11 @@ function deleteElement(index){
 
 }
 
+function viewPage(){
+  window.location = "./form.html";
+}
 
-function saveFormEditor(){
+function publishForm(){
 
 }
 
