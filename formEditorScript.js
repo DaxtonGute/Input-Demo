@@ -21,19 +21,19 @@ function newTextField() {                    //TEXT
   deleteButton.style.backgroundColor = "red";
   deleteButton.innerHTML = "X";
   deleteButton.onclick = function() {this.remove();deleteElement(this.className);};
+  var newLine = document.createElement("br");
 
   questionsLength = questions.length;
   label.className = "_" + questionsLength;
   deleteButton.className = "_" + questionsLength;
   input.className = "_" + questionsLength;
+  newLine.className = "_" + questionsLength;
 
   questions.push(["textField", label]);
   insideThis.appendChild(label);
   insideThis.appendChild(deleteButton);
   insideThis.appendChild(input);
-  console.log(label.className);
-  console.log(deleteButton.className);
-  console.log(input.className);
+  insideThis.appendChild(newLine);
 
 }
 
@@ -54,16 +54,19 @@ function newNumberField() {                   //NUMBERS //add the max and min
   deleteButton.style.backgroundColor = "red";
   deleteButton.innerHTML = "X";
   deleteButton.onclick = function() {this.remove();deleteElement(this.className);};
+  var newLine = document.createElement("br");
 
   questionsLength = questions.length;
   label.className = "_" + questionsLength;
   deleteButton.className = "_" + questionsLength;
   input.className = "_" + questionsLength;
+  newLine.className = "_" + questionsLength;
 
   questions.push(["numberField", label]);
   insideThis.appendChild(label);
   insideThis.appendChild(deleteButton);
   insideThis.appendChild(input);
+  insideThis.appendChild(newLine);
 }
 
 
@@ -77,14 +80,17 @@ function newRadioGroup() {                  //RADIOGROUP
   deleteButton.style.backgroundColor = "red";
   deleteButton.innerHTML = "X";
   deleteButton.onclick = function() {this.remove();deleteElement(this.className);};
+  var newLine = document.createElement("br");
 
   questionsLength = questions.length;
   label.className = "_" + questionsLength;
   deleteButton.className = "_" + questionsLength;
+  newLine.className = "_" + questionsLength;
 
   questions.push(["radioGroup", label]);
   insideThis.appendChild(label);
   insideThis.appendChild(deleteButton);
+  insideThis.appendChild(newLine);
 }
 
 
@@ -109,16 +115,19 @@ function newRadioButton(){                  //RADIOBUTTON
   deleteButton.style.backgroundColor = "red";
   deleteButton.innerHTML = "X";
   deleteButton.onclick = function() {this.remove();deleteElement(this.className);};
+  var newLine = document.createElement("br");
 
   questionsLength = questions.length;
   radioButton.className = "_" + questionsLength;
   label.className = "_" + questionsLength;
   deleteButton.className = "_" + questionsLength;
+  newLine.className = "_" + questionsLength;
 
   questions.push(["radioButton", label]);
   insideThis.appendChild(radioButton);
   insideThis.appendChild(label);
   insideThis.appendChild(deleteButton);
+  insideThis.appendChild(newLine);
 }
 
 
@@ -135,16 +144,19 @@ function newCheckbox(){                  //CHECKBOX
   deleteButton.style.backgroundColor = "red";
   deleteButton.innerHTML = "X";
   deleteButton.onclick = function() {this.remove();deleteElement(this.className);};
+  var newLine = document.createElement("br");
 
   questionsLength = questions.length;
   checkButton.className = "_" + questionsLength;
   deleteButton.className = "_" + questionsLength;
   label.className = "_" + questionsLength;
+  newLine.className = "_" + questionsLength;
 
   questions.push(["checkbox", label]);
   insideThis.appendChild(checkButton);
   insideThis.appendChild(label);
   insideThis.appendChild(deleteButton);
+  insideThis.appendChild(newLine);
 }
 
 function deleteElement(index){
