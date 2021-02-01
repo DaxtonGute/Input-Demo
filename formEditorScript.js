@@ -1,6 +1,13 @@
 var insideThis = document.getElementById("inside");
-var questions = []; // [Element, label, response]
-var answers = [];
+
+try{
+  var formElements = localStorage.getItem("formElements");
+  questions = formElements[0];
+  answers = formElements[1];
+}catch{
+  var questions = [];
+  var answers = [];
+}
 
 // add a post to automatically ship data into a field <form action=“formEditor.html” method=“post”>
 
@@ -180,7 +187,12 @@ function viewPage(){
 }
 
 function publishForm(){
-
+  var formElements = {
+    questions: questions,
+    answers: answers,
+  }
+  localStorage.setItem("formElements", JSON.stringify(formElements));
+  console.log(JSON.stringify(formElements));
 }
 
 //add method that is just interpreting the JSON to the form (not editor)
