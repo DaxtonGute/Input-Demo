@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script defer type="text/javascript" src="./formEditorScript.js"></script>
   </head>
-  <body id="body" style="background-color: rgb(255,143,94);">
+  <body id="body" style="background-color: rgb(102,0,204);" onload="loadForm();">
 
-    <div id="editor">
+    <div id="editor" style="display: none">
       <div class="row" style="padding-top: 20px; padding-bottom: 20px">
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
@@ -48,7 +48,7 @@
                 <button type="button" class="btn btn-info" onClick="publishForm();"> Publish </button> <!-- eventually separate into individual -->
               </div>
               <div class="col-sm-2">
-                <button type="button" class="btn btn-primary" onClick="viewPage();loadForm();"> View </button>
+                <button type="button" class="btn btn-primary" onClick="viewPage();"> View </button>
               </div>
             </div>
           </div>
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div id="preview" style="display: none">
+    <div id="preview">
       <div class="row" style="padding-top: 20px; padding-bottom: 20px">
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
@@ -79,7 +79,7 @@
                   <button type="button" class="btn btn-info" onClick="saveForm();"> Save </button> <!-- eventually separate into individual -->
                 </div>
                 <div class="col-sm-2">
-                  <button type="button" class="btn btn-primary" onClick="backPage();"> Back </button>
+                  <button type="button" class="btn btn-primary" onClick="backPage();"> Edit </button>
                 </div>
               </div>
             </div>
