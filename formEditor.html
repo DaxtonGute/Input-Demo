@@ -19,7 +19,7 @@
               <h1 style="color: white; padding-top: 20px"> Form Editor </h1>
             </div>
             <div class="card-body text-left">
-              <p> Create and edit your forms here. To view your form, click 'view form'. </p>
+              <p> Create and edit your forms here. To view your form, click 'view'. Keep in mind, no changes will be reflected there until your changes are finalised by pressing 'published'. Otherwise you will just see your previous form for reference</p>
             </div>
 
             <!-- new elements go here -->
@@ -65,22 +65,24 @@
               <h1 style="color: white; padding-top: 20px"> Google Forms! </h1>
             </div>
             <div class="card-body text-left">
+              <p> View your previous/current form here. To edit your form, click 'edit'. That will give you various options to construct a form that, once published, can be tested and saved here. If you click 'save' all of your previous answers are saved. This way even after leaving and returning you need only to press 'Autofill' to view your questions as well as their answers. When you are all finished. Feel free to copy the form section of the code and paste it to your website for an easy customizable form</p>
+            </div>
 
-              <div id="insideForm">
+
+            <div id="insideForm">
+            </div>
+
+            <button onClick = "autofill();" style="margin-bottom:30px"> Autofill? </button>
+            <div class="row" style="padding-top: 20px; padding-bottom: 20px">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-2"></div>
+              <div class="col-sm-2"></div>
+              <div class="col-sm-2"></div>
+              <div class="col-sm-2">
+                <button type="button" class="btn btn-info" onClick="saveForm();"> Save </button> <!-- eventually separate into individual -->
               </div>
-
-              <button onClick = "autofill();" style="margin-bottom:30px"> Autofill? </button>
-              <div class="row" style="padding-top: 20px; padding-bottom: 20px">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2">
-                  <button type="button" class="btn btn-info" onClick="saveForm();"> Save </button> <!-- eventually separate into individual -->
-                </div>
-                <div class="col-sm-2">
-                  <button type="button" class="btn btn-primary" onClick="backPage();"> Edit </button>
-                </div>
+              <div class="col-sm-2">
+                <button type="button" class="btn btn-primary" onClick="backPage();"> Edit </button>
               </div>
             </div>
           </div>
