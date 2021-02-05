@@ -209,6 +209,7 @@ function publishForm(){
   for (var i = 0; i < questions.length; i++) {
     questions[i][1] = questions[i][1].value;
   }
+  answers = [];
   var formElements = {
     questionsValue: questions,
     answersValue: answers,
@@ -272,6 +273,7 @@ function displayRadioGroup(labelText) {                  //RADIOGROUP
 
 function displayRadioButton(labelText){                  //RADIOBUTTON
   var radioButton = document.createElement("input");
+  var label = document.createElement("label");
   radioButton.type = "radio";
   radioButton.style.margin = "0px 0px 0px 10px";
   lastRadioGroup = 0;
@@ -280,10 +282,9 @@ function displayRadioButton(labelText){                  //RADIOBUTTON
       lastRadioGroup = i;
     }
   }
-  radioButton.name = "" + lastRadioGroup;
-  radioButton.disabled = "yes";
-  var label = document.createElement("p");
-  label.style.margin = "10px 0px";
+  radioButton.name = "_" + lastRadioGroup + "RadioGroup";
+  radioButton.value = labelText;
+  label.for = labelText;
   label.innerHTML = labelText;
   var newLine = document.createElement("br");
 
@@ -291,16 +292,16 @@ function displayRadioButton(labelText){                  //RADIOBUTTON
   insideThat.appendChild(label);
   insideThat.appendChild(newLine);
 
-  input.id = labelText+"Radio"+formElementIds.length;
+  radioButton.id = labelText+"Radio"+formElementIds.length;
   formElementIds.push(labelText+"Radio"+formElementIds.length);
 }
 
 function displayCheckbox(labelText){                  //CHECKBOX
   var checkButton = document.createElement("input");
   checkButton.type = "checkbox";
-  checkButton.disabled = "yes";
-  var label = document.createElement("p");
-  label.style.margin = "10px 0px";
+  var label = document.createElement("label");
+  checkButton.value = labelText;
+  label.for = labelText;
   label.innerHTML = labelText;
   var newLine = document.createElement("br");
 
@@ -308,7 +309,7 @@ function displayCheckbox(labelText){                  //CHECKBOX
   insideThat.appendChild(label);
   insideThat.appendChild(newLine);
 
-  input.id = labelText+"Check"+formElementIds.length;
+  checkButton.id = labelText+"Check"+formElementIds.length;
   formElementIds.push(labelText+"Check"+formElementIds.length);
 }
 
