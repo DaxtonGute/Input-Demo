@@ -1,41 +1,13 @@
+var questions = []; // initializing the array used for the questions accross both 'pages'
+var answers = [];   // initializing the array used for the answers accross both 'pages'
 
-var insideThis = document.getElementById("inside");
+var insideEditor = document.getElementById("insideEditor"); // Collects location of div where everything for the editor will be placed
 
-try{
-  var formElements = JSON.parse(localStorage.getItem("formElements"));
-  questions = formElements.questionsValue;
-  answers = formElements.answersValue;
-}catch{
-  var questions = [];
-  var answers = [];
-}
-
-function loadForm(){
-  try{
-    var formElements = JSON.parse(localStorage.getItem("formElements"));
-    questions = formElements.questionsValue;
-    answers = formElements.answersValue;
-  }catch{
-    var questions = [];
-    var answers = [];
-  }
-  for (var i = 0; i < questions.length; i++) {
-    var inputName = questions[i][0];
-    if(inputName === "textField"){
-      displayTextField(questions[i][1]);
-    }else if(inputName === "numberField"){
-      displayNumberField(questions[i][1]);
-    }else if(inputName === "radioGroup"){
-      displayRadioGroup(questions[i][1]);
-    }else if(inputName === "radioButton"){
-      displayRadioButton(questions[i][1]);
-    }else if(inputName === "checkbox"){
-      displayCheckbox(questions[i][1]);
-    }
-  }
-}
-
-function newTextField() {                    //TEXT
+/*
+Creates a new text field in the form editor with the required input boxes and specifications.
+It also adds this new question to the questions array to be later interpreted for its label and type.
+*/
+function newTextField() {      
   var label = document.createElement("input");
   label.type = "text";
   label.placeholder = "Put the label's text here";
@@ -60,14 +32,17 @@ function newTextField() {                    //TEXT
   newLine.className = "_" + questionsLength;
 
   questions.push(["textField", label]);
-  insideThis.appendChild(label);
-  insideThis.appendChild(deleteButton);
-  insideThis.appendChild(input);
-  insideThis.appendChild(newLine);
-
+  insideEditor.appendChild(label);
+  insideEditor.appendChild(deleteButton);
+  insideEditor.appendChild(input);
+  insideEditor.appendChild(newLine);
 }
 
-function newNumberField() {                   //NUMBERS //add the max and min
+/*
+Creates a new number field in the form editor with the required input boxes and specifications.
+It also adds this new question to the questions array to be later interpreted for its label and type.
+*/
+function newNumberField() {
   var label = document.createElement("input");
   label.type = "text";
   label.placeholder = "Put the label's text here";
@@ -91,13 +66,18 @@ function newNumberField() {                   //NUMBERS //add the max and min
   newLine.className = "_" + questionsLength;
 
   questions.push(["numberField", label]);
-  insideThis.appendChild(label);
-  insideThis.appendChild(deleteButton);
-  insideThis.appendChild(input);
-  insideThis.appendChild(newLine);
+  insideEditor.appendChild(label);
+  insideEditor.appendChild(deleteButton);
+  insideEditor.appendChild(input);
+  insideEditor.appendChild(newLine);
 }
 
-function newRadioGroup() {                  //RADIOGROUP
+/*
+Creates a new radio group in the form editor with the required input boxes and specifications.
+It also adds this new question to the questions array to be later interpreted for its label and type.
+Radio groups primarily act as something to be used to tie radio buttons together.
+*/
+function newRadioGroup() {
   var label = document.createElement("input");
   label.type = "text";
   label.placeholder = "Put the radio group's text here";
@@ -114,12 +94,16 @@ function newRadioGroup() {                  //RADIOGROUP
   newLine.className = "_" + questionsLength;
 
   questions.push(["radioGroup", label]);
-  insideThis.appendChild(label);
-  insideThis.appendChild(deleteButton);
-  insideThis.appendChild(newLine);
+  insideEditor.appendChild(label);
+  insideEditor.appendChild(deleteButton);
+  insideEditor.appendChild(newLine);
 }
 
-function newRadioButton(){                  //RADIOBUTTON
+/*
+Creates a new radio button in the form editor with the required input boxes and specifications.
+It also adds this new question to the questions array to be later interpreted for its label and type.
+*/
+function newRadioButton(){
   var radioButton = document.createElement("input");
   radioButton.type = "radio";
   radioButton.style.margin = "0px 0px 0px 10px";
@@ -148,13 +132,17 @@ function newRadioButton(){                  //RADIOBUTTON
   newLine.className = "_" + questionsLength;
 
   questions.push(["radioButton", label]);
-  insideThis.appendChild(radioButton);
-  insideThis.appendChild(label);
-  insideThis.appendChild(deleteButton);
-  insideThis.appendChild(newLine);
+  insideEditor.appendChild(radioButton);
+  insideEditor.appendChild(label);
+  insideEditor.appendChild(deleteButton);
+  insideEditor.appendChild(newLine);
 }
 
-function newCheckbox(){                  //CHECKBOX
+/*
+Creates a new checkbox in the form editor with the required input boxes and specifications.
+It also adds this new question to the questions array to be later interpreted for its label and type.
+*/
+function newCheckbox(){
   var checkButton = document.createElement("input");
   checkButton.type = "checkbox";
   checkButton.disabled = "yes";
@@ -175,12 +163,16 @@ function newCheckbox(){                  //CHECKBOX
   newLine.className = "_" + questionsLength;
 
   questions.push(["checkbox", label]);
-  insideThis.appendChild(checkButton);
-  insideThis.appendChild(label);
-  insideThis.appendChild(deleteButton);
-  insideThis.appendChild(newLine);
+  insideEditor.appendChild(checkButton);
+  insideEditor.appendChild(label);
+  insideEditor.appendChild(deleteButton);
+  insideEditor.appendChild(newLine);
 }
 
+/*
+Allows the delete button to work on each element so the user can more easily modify the
+form editor and questions (it deletes the questions from the questions array)
+*/
 function deleteElement(index){
   var classElement = document.querySelectorAll("."+index);
   for (var i = 0; i < classElement.length; i++) {
@@ -196,21 +188,28 @@ function deleteElement(index){
 
 }
 
+/*
+Switches the form from editor mode to view mode and resets
+*/
 function viewPage(){
   document.getElementById("editor").style.display = "none";
   document.getElementById("preview").style.display = "block";
   document.getElementById("body").style.backgroundColor = "rgb(102,0,204)";
   loadForm();
-  while (insideThis.hasChildNodes()) {
-    insideThis.removeChild(insideThis.lastChild);
+  while (insideEditor.hasChildNodes()) {
+    insideEditor.removeChild(insideEditor.lastChild);
   }
 }
 
+/*
+Saves the current questions presets. Otherwise, the questions and answers arrays
+will be simply ignore
+*/
 function publishForm(){
   for (var i = 0; i < questions.length; i++) {
     questions[i][1] = questions[i][1].value;
   }
-  answers = [];
+  answers = []; // resets the answers each time a new version comes out
   var formElements = {
     questionsValue: questions,
     answersValue: answers,
@@ -221,14 +220,48 @@ function publishForm(){
 
 
 //this was originally made to be two separate docs
+//it is now segmented into the editor and view mode (this upcoming section is the view page)
 
 
 
-var formElementIds = [];
-var radioGroupElements = [];
-insideThat = document.getElementById("insideForm");
+var formElementIds = [];     // tracks all of the inputs so they can be transfered to answers
+var radioGroupElements = []; // a new system for grouping together radio buttons
+insideForm = document.getElementById("insideForm");  // Collects location of div where everything for the editor will be placed
 
-function displayTextField(labelText) {                    //TEXT
+/*
+Assigns the localstorages values to questions and answers. It then displays the questions
+accordinlgy. This is why to press 'publish' above
+*/
+function loadForm(){
+  try{
+    var formElements = JSON.parse(localStorage.getItem("formElements"));
+    questions = formElements.questionsValue;
+    answers = formElements.answersValue;
+  }catch{
+    questions = [];
+    answers = [];
+  }
+  for (var i = 0; i < questions.length; i++) {
+    var inputName = questions[i][0];
+    if(inputName === "textField"){
+      displayTextField(questions[i][1]);
+    }else if(inputName === "numberField"){
+      displayNumberField(questions[i][1]);
+    }else if(inputName === "radioGroup"){
+      displayRadioGroup(questions[i][1]);
+    }else if(inputName === "radioButton"){
+      displayRadioButton(questions[i][1]);
+    }else if(inputName === "checkbox"){
+      displayCheckbox(questions[i][1]);
+    }
+  }
+}
+
+/*
+Displays a text field with appropriate labels and input boxes. It also ids it so the
+answers can be recorded later.
+*/
+function displayTextField(labelText) {
   var label = document.createElement("p");
   label.style.margin = "10px 0px";
   label.innerHTML = labelText;
@@ -238,15 +271,19 @@ function displayTextField(labelText) {                    //TEXT
   input.style.margin = "10px 0px";
   var newLine = document.createElement("br");
 
-  insideThat.appendChild(label);
-  insideThat.appendChild(input);
-  insideThat.appendChild(newLine);
+  insideForm.appendChild(label);
+  insideForm.appendChild(input);
+  insideForm.appendChild(newLine);
 
   input.id = labelText+"text"+formElementIds.length;
   formElementIds.push(labelText+"text"+formElementIds.length);
 }
 
-function displayNumberField(labelText) {                   //NUMBERS //add the max and min
+/*
+Displays a number field with appropriate labels and input boxes. It also ids it so the
+answers can be recorded later.
+*/
+function displayNumberField(labelText) {
   var label = document.createElement("p");
   label.style.margin = "10px 0px";
   label.innerHTML = labelText;
@@ -255,24 +292,32 @@ function displayNumberField(labelText) {                   //NUMBERS //add the m
   input.style.margin = "10px 0px";
   var newLine = document.createElement("br");
 
-  insideThat.appendChild(label);
-  insideThat.appendChild(input);
-  insideThat.appendChild(newLine);
+  insideForm.appendChild(label);
+  insideForm.appendChild(input);
+  insideForm.appendChild(newLine);
 
   input.id = labelText+"number"+formElementIds.length;
   formElementIds.push(labelText+"number"+formElementIds.length);
 }
 
-function displayRadioGroup(labelText) {                  //RADIOGROUP
+/*
+Displays a radio group with appropriate labels and input boxes. Once again this is mostly
+used to group the radio buttons together.
+*/
+function displayRadioGroup(labelText) {
   var label = document.createElement("p");
   label.style.margin = "10px 0px";
   label.innerHTML =labelText;
   radioGroupElements.push(labelText);
 
-  insideThat.appendChild(label);
+  insideForm.appendChild(label);
 }
 
-function displayRadioButton(labelText){                  //RADIOBUTTON
+/*
+Displays a radio button with appropriate labels and input boxes. It also ids it so the
+answers can be recorded later.
+*/
+function displayRadioButton(labelText){
   var radioButton = document.createElement("input");
   var label = document.createElement("label");
   radioButton.type = "radio";
@@ -284,15 +329,19 @@ function displayRadioButton(labelText){                  //RADIOBUTTON
   label.innerHTML = labelText;
   var newLine = document.createElement("br");
 
-  insideThat.appendChild(radioButton);
-  insideThat.appendChild(label);
-  insideThat.appendChild(newLine);
+  insideForm.appendChild(radioButton);
+  insideForm.appendChild(label);
+  insideForm.appendChild(newLine);
 
   radioButton.id = labelText+"Radio"+formElementIds.length;
   formElementIds.push(labelText+"Radio"+formElementIds.length);
 }
 
-function displayCheckbox(labelText){                  //CHECKBOX
+/*
+Displays a checkbox with appropriate labels and input boxes. It also ids it so the
+answers can be recorded later.
+*/
+function displayCheckbox(labelText){
   var checkButton = document.createElement("input");
   checkButton.type = "checkbox";
   var label = document.createElement("label");
@@ -301,25 +350,31 @@ function displayCheckbox(labelText){                  //CHECKBOX
   label.innerHTML = labelText;
   var newLine = document.createElement("br");
 
-  insideThat.appendChild(checkButton);
-  insideThat.appendChild(label);
-  insideThat.appendChild(newLine);
+  insideForm.appendChild(checkButton);
+  insideForm.appendChild(label);
+  insideForm.appendChild(newLine);
 
   checkButton.id = labelText+"Check"+formElementIds.length;
   formElementIds.push(labelText+"Check"+formElementIds.length);
 }
 
+/*
+Changes the page back from view to edit mode.
+*/
 function backPage(){
   document.getElementById("editor").style.display = "block";
   document.getElementById("preview").style.display = "none";
   document.getElementById("body").style.backgroundColor = "rgb(255,143,94)";
-  while (insideThat.hasChildNodes()) {
-    insideThat.removeChild(insideThat.lastChild);
+  while (insideForm.hasChildNodes()) {
+    insideForm.removeChild(insideForm.lastChild);
   }
   formElementIds = [];
   questions = [];
 }
 
+/*
+Saves all of the answers to be used later
+*/
 function saveForm(){
   for (var i = 0; i < formElementIds.length; i++) {
     var theValue = document.getElementById(formElementIds[i]);
@@ -338,6 +393,9 @@ function saveForm(){
   localStorage.setItem("formElements", JSON.stringify(formElements));
 }
 
+/*
+Automatically fills in input boxes based on their id and previous saved responses
+*/
 function autofill(){
   for (var i = 0; i < formElementIds.length; i++) {
     try{
