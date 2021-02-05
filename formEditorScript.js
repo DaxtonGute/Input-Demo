@@ -203,6 +203,9 @@ function viewPage(){
   document.getElementById("preview").style.display = "block";
   document.getElementById("body").style.backgroundColor = "rgb(102,0,204)";
   loadForm();
+  while (insideThis.hasChildNodes()) {
+    insideThis.removeChild(insideThis.lastChild);
+  }
 }
 
 function publishForm(){
@@ -325,9 +328,12 @@ function backPage(){
 function saveForm(){
   for (var i = 0; i < formElementIds.length; i++) {
     var theValue = document.getElementById(formElementIds[i]);
-    answers[i] = theValue.value;
-    if (theValue.checked==true || theValue.checked==false){
+    if (theValue.type == "text"){
+      answers[i] = theValue.value;
+    }else if (theValue.type == "checkbox" || theValue.type == "radio"){
       answers[i] = theValue.checked;
+    }else if (theValue.type == "number"){
+      answers[i] = theValue.value;
     }
   }
   var formElements = {
@@ -341,9 +347,12 @@ function autofill(){
   for (var i = 0; i < formElementIds.length; i++) {
     try{
       var theValue = document.getElementById(formElementIds[i]);
-      theValue.value = answers[i];
-      if (theValue.checked==true || theValue.checked==false){
+      if (theValue.type == "text"){
+        theValue.value = answers[i];
+      }else if (theValue.type == "checkbox" || theValue.type == "radio"){
         theValue.checked = answers[i];
+      }else if (theValue.type == "number"){
+        theValue.value = parseInt(answers[i]);
       }
     }catch{
       document.getElementById(formElementIds[i]).value = "undefined";
