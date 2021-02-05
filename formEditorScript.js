@@ -5,7 +5,6 @@ try{
   var formElements = JSON.parse(localStorage.getItem("formElements"));
   questions = formElements.questionsValue;
   answers = formElements.answersValue;
-  console.log(formElements);
 }catch{
   var questions = [];
   var answers = [];
@@ -16,7 +15,6 @@ function loadForm(){
     var formElements = JSON.parse(localStorage.getItem("formElements"));
     questions = formElements.questionsValue;
     answers = formElements.answersValue;
-    console.log(formElements);
   }catch{
     var questions = [];
     var answers = [];
@@ -227,6 +225,7 @@ function publishForm(){
 
 
 var formElementIds = [];
+var radioGroupElements = [];
 insideThat = document.getElementById("insideForm");
 
 function displayTextField(labelText) {                    //TEXT
@@ -268,6 +267,7 @@ function displayRadioGroup(labelText) {                  //RADIOGROUP
   var label = document.createElement("p");
   label.style.margin = "10px 0px";
   label.innerHTML =labelText;
+  radioGroupElements.push(labelText);
 
   insideThat.appendChild(label);
 }
@@ -277,13 +277,8 @@ function displayRadioButton(labelText){                  //RADIOBUTTON
   var label = document.createElement("label");
   radioButton.type = "radio";
   radioButton.style.margin = "0px 0px 0px 10px";
-  lastRadioGroup = 0;
-  for (var i = 0; i < questions.length; i++) {
-    if(questions[i][0] === "radioGroup"){
-      lastRadioGroup = i;
-    }
-  }
-  radioButton.name = "_" + lastRadioGroup + "RadioGroup";
+
+  radioButton.name = "_" + radioGroupElements.length  + "RadioGroup";
   radioButton.value = labelText;
   label.for = labelText;
   label.innerHTML = labelText;
