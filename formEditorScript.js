@@ -265,10 +265,8 @@ function displayRadioGroup(labelText) {                  //RADIOGROUP
   var label = document.createElement("p");
   label.style.margin = "10px 0px";
   label.innerHTML =labelText;
-  var newLine = document.createElement("br");
 
   insideThat.appendChild(label);
-  insideThat.appendChild(newLine);
 }
 
 function displayRadioButton(labelText){                  //RADIOBUTTON
@@ -326,7 +324,11 @@ function backPage(){
 
 function saveForm(){
   for (var i = 0; i < formElementIds.length; i++) {
-    answers[i] = document.getElementById(formElementIds[i]).value;
+    var theValue = document.getElementById(formElementIds[i]);
+    answers[i] = theValue.value;
+    if (theValue.checked==true || theValue.checked==false){
+      answers[i] = theValue.checked;
+    }
   }
   var formElements = {
     questionsValue: questions,
@@ -338,7 +340,11 @@ function saveForm(){
 function autofill(){
   for (var i = 0; i < formElementIds.length; i++) {
     try{
-      document.getElementById(formElementIds[i]).value = answers[i];
+      var theValue = document.getElementById(formElementIds[i]);
+      theValue.value = answers[i];
+      if (theValue.checked==true || theValue.checked==false){
+        theValue.checked = answers[i];
+      }
     }catch{
       document.getElementById(formElementIds[i]).value = "undefined";
     }
