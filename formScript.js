@@ -1,31 +1,31 @@
 var insideThis = document.getElementById("inside");
 
-// try{
-  var formElements = JSON.parse(localStorage.getItem("formElements"));
-  questions = formElements.questions;
-  answers = formElements.answers;
-// }catch{
-//   var questions = [];
-//   var answers = [];
-// }
+try{
+  var formElements = localStorage.getItem("formElements");
+  questions = formElements[0];
+  answers = formElements[1];
+}catch{
+  var questions = [];
+  var answers = [];
+}
 
 
 for (var i = 0; i < questions.length; i++) {
   var inputName = questions[i][0];
   if(inputName === "textField"){
-    newTextField(questions[i][1]);
+    displayTextField(questions[i][1]);
   }else if(inputName === "numberField"){
-    newNumberField(questions[i][1]);
+    displayNumberField(questions[i][1]);
   }else if(inputName === "radioGroup"){
-    newRadioGroup(questions[i][1]);
+    displayRadioGroup(questions[i][1]);
   }else if(inputName === "radioButton"){
-    newRadioButton(questions[i][1]);
+    displayRadioButton(questions[i][1]);
   }else if(inputName === "checkbox"){
-    newCheckbox(questions[i][1]);
+    displayCheckbox(questions[i][1]);
   }
 }
 
-function newTextField(labelText) {                    //TEXT
+function displayTextField(labelText) {                    //TEXT
   var label = document.createElement("p");
   label.style.margin = "10px 0px";
   label.innerHTML = labelText;
@@ -43,7 +43,7 @@ function newTextField(labelText) {                    //TEXT
 
 
 
-function newNumberField(labelText) {                   //NUMBERS //add the max and min
+function displayNumberField(labelText) {                   //NUMBERS //add the max and min
   var label = document.createElement("p");
   label.style.margin = "10px 0px";
   label.innerHTML = labelText;
@@ -59,7 +59,7 @@ function newNumberField(labelText) {                   //NUMBERS //add the max a
 
 
 
-function newRadioGroup(labelText) {                  //RADIOGROUP
+function displayRadioGroup(labelText) {                  //RADIOGROUP
   var label = document.createElement("p");
   label.style.margin = "10px 0px";
   label.innerHTML =labelText;
@@ -71,7 +71,7 @@ function newRadioGroup(labelText) {                  //RADIOGROUP
 
 
 
-function newRadioButton(labelText){                  //RADIOBUTTON
+function displayRadioButton(labelText){                  //RADIOBUTTON
   var radioButton = document.createElement("input");
   radioButton.type = "radio";
   radioButton.style.margin = "0px 0px 0px 10px";
@@ -95,7 +95,7 @@ function newRadioButton(labelText){                  //RADIOBUTTON
 
 
 
-function newCheckbox(labelText){                  //CHECKBOX
+function displayCheckbox(labelText){                  //CHECKBOX
   var checkButton = document.createElement("input");
   checkButton.type = "checkbox";
   checkButton.disabled = "yes";
@@ -110,7 +110,9 @@ function newCheckbox(labelText){                  //CHECKBOX
 }
 
 function backPage(){
-  window.location = "./formEditor.html";
+  document.getElementById("editor").style.display = "block";
+  document.getElementById("preview").style.display = "none";
+  document.getElementById("body").style.backgroundColor = "rgb(255,143,94)";
 }
 
 function saveForm(){

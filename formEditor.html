@@ -7,50 +7,86 @@
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script defer type="text/javascript" src="./formEditorScript.js"></script>
+    <script defer type="text/javascript" src="./formScript.js"></script>
   </head>
-  <body style="background-color: rgb(255,143,94);">
+  <body id="body" style="background-color: rgb(255,143,94);">
 
-    <div class="row" style="padding-top: 20px; padding-bottom: 20px">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-6">
-        <div class="card" style="background-color: rgb(255,196,94);">
-          <div class="card-body text-center">
-            <h1 style="color: white; padding-top: 20px"> Form Editor </h1>
-          </div>
-          <div class="card-body text-left">
-            <p> Create and edit your forms here. To view your form, click 'view form'. </p>
-          </div>
-
-          <!-- new elements go here -->
-          <div id="inside">
-          </div>
-
-
-          <div class="btn-group">
-            <button type="button" class="btn btn-danger" onClick = "newTextField();"> New Text Field </button>
-            <button type="button" class="btn btn-danger" onClick = "newNumberField();"> New Number Field </button>
-          </div>
-
-          <div class="btn-group">
-            <button type="button" class="btn btn-danger" onClick = "newRadioGroup();"> New Radio Group </button>
-            <button type="button" class="btn btn-danger" onClick = "newRadioButton();"> New Radio Button </button>
-            <button type="button" class="btn btn-danger" onClick = "newCheckbox();"> New Checkbox </button>
-          </div>
-
-
-          <div class="row" style="padding-top: 20px; padding-bottom: 20px">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-2"></div>
-            <div class="col-sm-2"></div>
-            <div class="col-sm-2"></div>
-            <div class="col-sm-2">
-              <button type="button" class="btn btn-info" onClick="publishForm();"> Publish </button> <!-- eventually separate into individual -->
+    <div id="editor">
+      <div class="row" style="padding-top: 20px; padding-bottom: 20px">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+          <div class="card" style="background-color: rgb(255,196,94);">
+            <div class="card-body text-center">
+              <h1 style="color: white; padding-top: 20px"> Form Editor </h1>
             </div>
-            <div class="col-sm-2">
-              <button type="button" class="btn btn-primary" onClick="viewPage();"> View </button>
+            <div class="card-body text-left">
+              <p> Create and edit your forms here. To view your form, click 'view form'. </p>
+            </div>
+
+            <!-- new elements go here -->
+            <div id="inside">
+            </div>
+
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-danger" onClick = "newTextField();"> New Text Field </button>
+              <button type="button" class="btn btn-danger" onClick = "newNumberField();"> New Number Field </button>
+            </div>
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-danger" onClick = "newRadioGroup();"> New Radio Group </button>
+              <button type="button" class="btn btn-danger" onClick = "newRadioButton();"> New Radio Button </button>
+              <button type="button" class="btn btn-danger" onClick = "newCheckbox();"> New Checkbox </button>
+            </div>
+
+
+            <div class="row" style="padding-top: 20px; padding-bottom: 20px">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-2"></div>
+              <div class="col-sm-2"></div>
+              <div class="col-sm-2"></div>
+              <div class="col-sm-2">
+                <button type="button" class="btn btn-info" onClick="publishForm();"> Publish </button> <!-- eventually separate into individual -->
+              </div>
+              <div class="col-sm-2">
+                <button type="button" class="btn btn-primary" onClick="viewPage();"> View </button>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div id="preview" style="display: none">
+      <div class="row" style="padding-top: 20px; padding-bottom: 20px">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+          <div class="card" style="background-color: rgb(215, 159, 249);">
+            <div class="card-body text-center">
+              <h1 style="color: white; padding-top: 20px"> Google Forms! </h1>
+            </div>
+            <div class="card-body text-left">
+
+              <div id="insideForm">
+              </div>
+
+              <button onClick = "autofill();" style="margin-bottom:30px"> Autofill? </button>
+              <div class="row" style="padding-top: 20px; padding-bottom: 20px">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-info" onClick="saveForm();"> Save </button> <!-- eventually separate into individual -->
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-primary" onClick="backPage();"> Back </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3"></div>
       </div>
     </div>
 

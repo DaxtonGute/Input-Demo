@@ -169,7 +169,6 @@ function newCheckbox(){                  //CHECKBOX
 function deleteElement(index){
   var classElement = document.querySelectorAll("."+index);
   for (var i = 0; i < classElement.length; i++) {
-    console.log(classElement[i]);
     classElement[i].remove();
   }
   questions.splice(Number(index), 1);
@@ -183,7 +182,9 @@ function deleteElement(index){
 }
 
 function viewPage(){
-  window.location = "./form.html";
+  document.getElementById("editor").style.display = "none";
+  document.getElementById("preview").style.display = "block";
+  document.getElementById("body").style.backgroundColor = "rgb(102,0,204)";
 }
 
 function publishForm(){
@@ -192,7 +193,6 @@ function publishForm(){
     answers: answers,
   }
   localStorage.setItem("formElements", JSON.stringify(formElements));
-  console.log(JSON.stringify(formElements));
 }
 
 //add method that is just interpreting the JSON to the form (not editor)
